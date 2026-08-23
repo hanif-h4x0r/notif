@@ -2,7 +2,7 @@ import os
 import requests
 
 BOT_TOKEN = os.environ["BOT_TOKEN"]
-CHAT_ID = os.environ["@fanfinfunfenfon"]  # ID Grup / Username Channel tujuan
+CHAT_ID = os.environ["@CHAT_ID"]  # ID Grup / Username Channel tujuan
 PESAN = "1 core"                 # Pesan yang ingin dikirim
 
 def send_message():
