@@ -1,22 +1,20 @@
 import os
-import requests
+import asyncio
+from telethon import TelegramClient
 
-BOT_TOKEN = os.environ["BOT_TOKEN"]
-CHAT_ID = os.environ["CHAT_ID"]  # ID Grup / Username Channel tujuan
-PESAN = "1 core"                 # Pesan yang ingin dikirim
+# Mengambil data sensitif dari GitHub Secrets
+API_ID = int(os.environ["API_ID"])
+API_HASH = os.environ["API_HASH"]
+SESSION_STRING = os.environ["SESSION_STRING"]
+TARGET = "@anything_notslava_bot"  # Ubah sesuai username tujuan
+PESAN = "1 core"       # Ubah pesan yang ingin dikirim
 
-def send_message():
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": CHAT_ID,
-        "text": PESAN
-    }
-    response = requests.post(url, json=payload)
-    
-    if response.status_code == 200:
-        print("Pesan berhasil dikirim!")
-    else:
-        print(f"Gagal mengirim: {response.text}")
+async def main():
+    # Menggunakan StringSession agar tidak perlu login ulang tiap jalan
+    from telethon.sessions import StringSession
+    async with TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH) as client:
+        await client.send_message(TARGET, PESAN)
+        print(f"Berhasil mengirim pesan ke {TARGET}")
 
 if __name__ == "__main__":
-    send_message()
+    asyncio.run(main())
