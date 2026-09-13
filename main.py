@@ -7,7 +7,7 @@ API_ID = int(os.environ["API_ID"])
 API_HASH = os.environ["API_HASH"]
 SESSION_STRING = os.environ["SESSION_STRING"]
 TARGET = "@anything_notslava_bot"  # Ubah sesuai username tujuan
-PESAN = "1 core"       # Ubah pesan yang ingin dikirim
+PESAN = "1200 core"       # Ubah pesan yang ingin dikirim
 
 async def main():
     # Menggunakan StringSession agar tidak perlu login ulang tiap jalan
